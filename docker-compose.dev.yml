@@ -1,0 +1,23 @@
+version: '3.9'
+
+# Development override — use with:
+# docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+#
+# Features:
+# - Backend hot reload via uvicorn --reload
+# - Source volume mounts for live editing
+# - Exposed backend port for direct API testing
+
+services:
+  backend:
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+    volumes:
+      - ./apps/backend:/app
+    environment:
+      - ENV=development
+
+  frontend:
+    build:
+      target: builder
+    # In dev, the frontend is served by Vite dev server (not nginx)
+    # Run: npm run dev:frontend separately instead of using this service

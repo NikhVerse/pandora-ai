@@ -1,0 +1,17 @@
+{
+  "name": "pandora-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/frontend",
+    "packages/ui",
+    "packages/types",
+    "packages/config",
+    "packages/shared"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev -w apps/frontend",
+    "build:frontend": "npm run build -w apps/frontend",
+    "install:all": "npm install"
+  }
+}
